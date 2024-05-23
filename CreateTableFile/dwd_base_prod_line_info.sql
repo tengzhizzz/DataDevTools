@@ -1,0 +1,20 @@
+CREATE TABLE `data_collection_sharing`.`dwd_base_prod_line_info` (
+    `prod_line_code` varchar(20) NOT NULL COMMENT '产线编号',
+    `comp_id` varchar(10) DEFAULT NULL COMMENT '公司ID',
+    `prod_line_name` varchar(200) DEFAULT NULL COMMENT '产线名称',
+    `prod_line_abb` varchar(100) DEFAULT NULL COMMENT '产线简称',
+    `is_oee` varchar(10) DEFAULT NULL COMMENT '是否纳入OEE;YES/NO',
+    `prior_by_unit` decimal(10,6) DEFAULT NULL COMMENT '占一级权重',
+    `prior_by_comp` decimal(10,6) DEFAULT NULL COMMENT '占公司权重',
+    `prod_line_nat` varchar(10) DEFAULT NULL COMMENT '产线性质',
+    `sdn_rea_code` varchar(10) DEFAULT NULL COMMENT '停机原因群码',
+    `use_dept` varchar(10) DEFAULT NULL COMMENT '操作责任单位',
+    `maint_respo_dept` varchar(10) DEFAULT NULL COMMENT '维护责任单位',
+    `dev_sys_no` varchar(20) DEFAULT NULL COMMENT '对应设备系统编号',
+    `craft_unit` varchar(10) DEFAULT NULL COMMENT '工艺单元',
+    `craft_unit_no` varchar(10) DEFAULT NULL COMMENT '工艺单元号',
+    `manf_code` varchar(10) DEFAULT NULL COMMENT '对应制造部编号',
+    `proc` varchar(10) DEFAULT NULL COMMENT '工序',
+    `run_stat` varchar(2) DEFAULT NULL COMMENT '运行状态;Y 正常，N 停用',
+    PRIMARY KEY (`prod_line_code`)
+) COMMENT='产线信息';
