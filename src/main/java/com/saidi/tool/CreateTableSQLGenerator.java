@@ -78,7 +78,7 @@ public class CreateTableSQLGenerator {
 
             if (column.isPrimaryKey()) {
                 primaryKeys.add(column.getName());
-                sql.append(" NOT NULL");
+                sql.append(" NOT NULL BINARY");
             } else {
                 sql.append(" DEFAULT NULL");
             }
