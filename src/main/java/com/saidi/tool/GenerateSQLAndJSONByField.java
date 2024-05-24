@@ -9,58 +9,75 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * 根据表名称生成查询语句
+ * 根据表字段生成查询语句
  */
-public class GenerateSQLAndJSONByTable {
+public class GenerateSQLAndJSONByField {
 
     public static void main(String[] args) throws IOException {
         // 数据库连接信息
         String dbName = "data_collection_sharing";
-        String dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
-        String dbUser = "root";
-        String dbPassword = "";
         //表名称
-        String tableName = "dwd_base_post_info";
+        String tableName = "dwd_base_employment_info";
 
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        List<String> fieldList = new ArrayList<>();
-
-        try {
-            // 加载 MySQL JDBC 驱动程序
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // 创建数据库连接
-            connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            // 创建Statement对象
-            statement = connection.createStatement();
-
-            // 执行SQL查询
-            String query = "SHOW COLUMNS FROM " + tableName;
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                String columnName = resultSet.getString("Field");
-                fieldList.add(columnName);
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // 关闭资源
-            try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+       List<String> fieldList = Arrays.asList(
+               "comp_id",
+               "empno",
+               "emptype",
+               "salarytype",
+               "deptno",
+               "classify",
+               "classifysrlno",
+               "title",
+               "agentdeptno",
+               "agenttitle",
+               "concrntdeptno",
+               "concrnttitle",
+               "origrade",
+               "post_code",
+               "crntgrade",
+               "tmntdate",
+               "suspenddate",
+               "tmnttype",
+               "tmntreason",
+               "tmntdocno",
+               "tmntreasondesc",
+               "empmethod",
+               "titlecategory",
+               "workplace",
+               "empdate",
+               "salarydate",
+               "grpdate",
+               "duedate",
+               "trialperiod",
+               "senioritydate",
+               "allowan",
+               "suspenddays",
+               "resumpdate",
+               "conttmntdate",
+               "hasspouse",
+               "taxkind",
+               "labourco",
+               "costcenter",
+               "belongcomp",
+               "dpntcnt",
+               "middlepay",
+               "ottype",
+               "monthbonustype",
+               "createempno",
+               "createdate",
+               "createtime",
+               "updateempno",
+               "updatedate",
+               "updatetime",
+               "concrntdeptno2",
+               "concrnttitle2",
+               "concrntdeptno3",
+               "concrnttitle3"
+        );
         if (CollectionUtil.isEmpty(fieldList)) {
             return;
         }
