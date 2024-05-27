@@ -23,7 +23,7 @@ public class GenerateSQLAndJSONByTable {
         String dbUser = "root";
         String dbPassword = "";
         //表名称
-        String tableName = "dwd_base_post_info";
+        String tableName = "dwd_base_machine_code";
 
         Connection connection = null;
         Statement statement = null;
@@ -94,11 +94,11 @@ public class GenerateSQLAndJSONByTable {
 
         FileUtil.appendString(" FROM " + dbName + "." + tableName, sqlFile, Charset.defaultCharset());
         if (fieldList.contains("final_update_date") && fieldList.contains("create_date")) {
-            FileUtil.appendString(" ORDER BY IFNULL(final_update_date,create_date)", sqlFile, Charset.defaultCharset());
+            FileUtil.appendString(" ORDER BY IFNULL(final_update_date,create_date) DESC", sqlFile, Charset.defaultCharset());
         } else if (fieldList.contains("final_update_date") && !fieldList.contains("create_date")) {
-            FileUtil.appendString(" ORDER BY final_update_date", sqlFile, Charset.defaultCharset());
+            FileUtil.appendString(" ORDER BY final_update_date DESC", sqlFile, Charset.defaultCharset());
         } else if (!fieldList.contains("final_update_date") && fieldList.contains("create_date")) {
-            FileUtil.appendString(" ORDER BY create_date", sqlFile, Charset.defaultCharset());
+            FileUtil.appendString(" ORDER BY create_date DESC", sqlFile, Charset.defaultCharset());
         }
         FileUtil.appendString("  ${limitSQL} \n", sqlFile, Charset.defaultCharset());
 
