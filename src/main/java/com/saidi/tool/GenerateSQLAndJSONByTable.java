@@ -23,7 +23,7 @@ public class GenerateSQLAndJSONByTable {
         String dbUser = "root";
         String dbPassword = "";
         //表名称
-        String tableName = "dwd_base_machine_code";
+        String tableName = "dwd_base_prod_shape_info";
 
         Connection connection = null;
         Statement statement = null;
@@ -116,6 +116,24 @@ public class GenerateSQLAndJSONByTable {
 
         FileUtil.appendString("{\n", jsonFile, Charset.defaultCharset());
         FileUtil.appendLines(resultData2, jsonFile, Charset.defaultCharset());
+        FileUtil.appendString("},\n", jsonFile, Charset.defaultCharset());
+
+
+        ArrayList<String> resultData3 = new ArrayList<>();
+
+        for (int i = 0; i < fieldList.size(); i++) {
+            String field = fieldList.get(i);
+            String humpField = "";
+            if (i == fieldList.size() - 1) {
+                humpField = "\"" + field + "\" : \"\"";
+            } else {
+                humpField = "\"" + field + "\" : \"\",";
+            }
+            resultData3.add(humpField);
+        }
+
+        FileUtil.appendString("{\n", jsonFile, Charset.defaultCharset());
+        FileUtil.appendLines(resultData3, jsonFile, Charset.defaultCharset());
         FileUtil.appendString("}\n", jsonFile, Charset.defaultCharset());
     }
 }
