@@ -17,7 +17,7 @@ public class GenerateMQSqlByTable {
         String dbUser = "root";
         String dbPassword = "";
         //表名称
-        String tableName = "dwd_base_prod_shape_info";
+        String tableName = "dwd_base_prod_cate";
 
         Connection connection = null;
         Statement statement = null;
@@ -80,12 +80,12 @@ public class GenerateMQSqlByTable {
                 insertSQL.append(fieldList.get(i)).append("`");
             }
         }
-        insertSQL.append(") VALUES (#{");
+        insertSQL.append(") VALUES ( ");
         for (int i = 0; i < fieldList.size(); i++) {
             if (i != fieldList.size() -1){
-                insertSQL.append(fieldList.get(i)).append("}, #{");
+                insertSQL.append("IF( #{").append(fieldList.get(i)).append("} = ' ', null , #{").append(fieldList.get(i)).append("}),");
             }else {
-                insertSQL.append(fieldList.get(i)).append("});");
+                insertSQL.append("IF( #{").append(fieldList.get(i)).append("} = ' ', null , #{").append(fieldList.get(i)).append("}));");
             }
         }
         System.out.println(insertSQL);
@@ -100,9 +100,9 @@ public class GenerateMQSqlByTable {
         }
         for (int i = 0; i < valueList.size(); i++) {
             if (i != valueList.size() - 1) {
-                updateSQL.append(valueList.get(i)).append("` = #{").append(valueList.get(i)).append("}, `");
+                updateSQL.append(valueList.get(i)).append("` =IF( #{").append(valueList.get(i)).append("} = ' ',null,").append("#{").append(valueList.get(i)).append("}), `");
             } else {
-                updateSQL.append(valueList.get(i)).append("` = #{").append(valueList.get(i)).append("}  WHERE `");
+                updateSQL.append(valueList.get(i)).append("` =IF( #{").append(valueList.get(i)).append("} = ' ',null,").append("#{").append(valueList.get(i)).append("}) WHERE `");
             }
         }
 

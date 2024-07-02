@@ -21,19 +21,20 @@ public class GenerateSQLAndJSONByField {
         // 数据库连接信息
         String dbName = "data_collection_sharing";
         //表名称
-        String tableName = "dwd_base_employment_info";
+        String tableName = "test";
 
        List<String> fieldList = Arrays.asList(
-               "comp_id",
-               "proc_type",
-               "mill_id",
-               "mill_cn_name",
-               "mill_en_name",
-               "creator_no",
-               "create_date",
-               "final_updater_no",
-               "final_update_date",
-               "line_code"
+                "COMPID",
+                "PRODCLASSNO",
+                "PRODCLASSCHIN",
+                "PRODCLASSENGN",
+                "CREATEEMPNO",
+                "CREATEDATE",
+                "UPDATEEMPNO",
+                "UPDATEDATE",
+                "PRIORITY",
+                "STATUS"
+
         );
         if (CollectionUtil.isEmpty(fieldList)) {
             return;
@@ -90,6 +91,23 @@ public class GenerateSQLAndJSONByField {
 
         FileUtil.appendString("{\n", jsonFile, Charset.defaultCharset());
         FileUtil.appendLines(resultData2, jsonFile, Charset.defaultCharset());
+        FileUtil.appendString("},\n", jsonFile, Charset.defaultCharset());
+
+
+        ArrayList<String> resultData3 = new ArrayList<>();
+        for (int i = 0; i < fieldList.size(); i++) {
+            String field = fieldList.get(i);
+            String humpField = "";
+            if (i == fieldList.size() - 1) {
+                humpField = "\"" + field + "\" : \"\"";
+            } else {
+                humpField = "\"" + field + "\" : \"\",";
+            }
+            resultData3.add(humpField);
+        }
+
+        FileUtil.appendString("{\n", jsonFile, Charset.defaultCharset());
+        FileUtil.appendLines(resultData3, jsonFile, Charset.defaultCharset());
         FileUtil.appendString("}\n", jsonFile, Charset.defaultCharset());
     }
 }
