@@ -17,7 +17,7 @@ public class GenerateMQSqlByTable {
         String dbUser = "root";
         String dbPassword = "";
         //表名称
-        String tableName = "dwd_base_prod_cate";
+        String tableName = "dwd_base_prod_line_info_copy1";
 
         Connection connection = null;
         Statement statement = null;

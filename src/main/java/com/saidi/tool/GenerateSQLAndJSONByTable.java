@@ -18,12 +18,12 @@ public class GenerateSQLAndJSONByTable {
 
     public static void main(String[] args) throws IOException {
         // 数据库连接信息
-        String dbName = "data_collection_sharing";
+        String dbName = "data";
         String dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
         String dbUser = "root";
-        String dbPassword = "";
+        String dbPassword = "123456";
         //表名称
-        String tableName = "dwd_base_prod_shape_info";
+        String tableName = "dwd_base_internal_stc_ge_info";
 
         Connection connection = null;
         Statement statement = null;

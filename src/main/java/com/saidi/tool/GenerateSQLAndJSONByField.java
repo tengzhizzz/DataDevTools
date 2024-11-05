@@ -24,29 +24,63 @@ public class GenerateSQLAndJSONByField {
         String tableName = "test";
 
        List<String> fieldList = Arrays.asList(
-                "COMPID",
-                "PRODCLASSNO",
-                "PRODCLASSCHIN",
-                "PRODCLASSENGN",
-                "CREATEEMPNO",
-                "CREATEDATE",
-                "UPDATEEMPNO",
-                "UPDATEDATE",
-                "PRIORITY",
-                "STATUS"
+               "prod_line_id",
+               "equip_key_id",
+               "prod_line_code",
+               "prod_line_code",
+               "comp_id",
+               "prod_line_name",
+               "prod_line_short_name",
+               "run_stat",
+               "craft_unit",
+               "craft_unit_no",
+               "manf_code",
+               "proc_name",
+               "iron_mes_prod_line_code",
+               "iron_mes_prod_line_name",
+               "erp_prod_line_code",
+               "erp_prod_line_name",
+               "esp_mes_prod_line_code",
+               "esp_mes_prod_line_name",
+               "old_steel_mes_prod_line_code",
+               "old_steel_mes_prod_line_name",
+               "sys1_prod_line_code",
+               "sys1_prod_line_name",
+               "sys2_prod_line_code",
+               "sys2_prod_line_name",
+               "sys3_prod_line_code",
+               "sys3_prod_line_name",
+               "sys4_prod_line_code",
+               "sys4_prod_line_name",
+               "sys5_prod_line_code",
+               "sys5_prod_line_name",
+               "sys6_prod_line_code",
+               "sys6_prod_line_name",
+               "sys7_prod_line_code",
+               "sys7_prod_line_name",
+               "sys8_prod_line_code",
+               "sys8_prod_line_name",
+               "sys9_prod_line_code",
+               "sys9_prod_line_name",
+               "sys10_prod_line_code",
+               "sys10_prod_line_name",
+               "creator_no",
+               "create_date",
+               "updater_no",
+               "update_date"
 
         );
         if (CollectionUtil.isEmpty(fieldList)) {
             return;
         }
-        String jsonFilePath = "/Users/zzz/workspace/tengzhi/RiZhaoSteel/FileList/" + tableName + ".json";
+        String jsonFilePath = "/Users/zzz/workspace/tengzhi/RiZhaoSteel_1/FileList/" + tableName + ".json";
         File jsonFile = new File(jsonFilePath);
         if (jsonFile.exists()) {
             jsonFile.delete();
         }
         jsonFile.createNewFile();
 
-        String sqlFilePath = "/Users/zzz/workspace/tengzhi/RiZhaoSteel/FileList/" + tableName + ".sql";
+        String sqlFilePath = "/Users/zzz/workspace/tengzhi/RiZhaoSteel_1/FileList/" + tableName + ".sql";
         File sqlFile = new File(sqlFilePath);
         if (sqlFile.exists()) {
             sqlFile.delete();
